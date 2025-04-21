@@ -35,17 +35,23 @@ export default function RawArtistPortfolio() {
   const current = content[lang];
 
   useEffect(() => {
-    document.documentElement.className = darkMode ? 'dark' : '';
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, [darkMode]);
 
   return (
-    <main className="min-h-screen transition-colors duration-300 bg-[#f9f9f9] text-black dark:bg-black dark:text-white font-sans">
+    <main className={`${darkMode ? "bg-black text-white" : "bg-[#f9f9f9] text-black"} min-h-screen font-sans transition-colors duration-300`}>
       <div className="flex justify-between items-center px-4 sm:px-6 py-4 text-sm">
         <div className="flex gap-2">
-          <button onClick={() => setLang('en')} className={lang === 'en' ? 'font-bold' : 'opacity-60'}>EN</button>
-          <button onClick={() => setLang('de')} className={lang === 'de' ? 'font-bold' : 'opacity-60'}>DE</button>
+          <button onClick={() => setLang("en")} className={lang === "en" ? "font-bold" : "opacity-60"}>EN</button>
+          <button onClick={() => setLang("de")} className={lang === "de" ? "font-bold" : "opacity-60"}>DE</button>
         </div>
-        <button onClick={() => setDarkMode(!darkMode)}>{darkMode ? '☀️' : '🌙'}</button>
+        <div>
+          <button onClick={() => setDarkMode(!darkMode)}>{darkMode ? "☀️" : "🌙"}</button>
+        </div>
       </div>
 
       <section className="flex flex-col items-center justify-center text-center py-16 px-4">
@@ -53,9 +59,11 @@ export default function RawArtistPortfolio() {
         <p className="text-base sm:text-lg md:text-xl max-w-xl text-neutral-500">{current.role}</p>
       </section>
 
-      <section id="about" className="py-16 px-4 sm:px-6 md:px-12 border-t border-neutral-300 dark:border-neutral-700">
+      <section id="about" className="py-16 px-4 sm:px-6 md:px-12 border-t border-neutral-300 dark:border-neutral-700 text-center">
         <h2 className="text-2xl sm:text-3xl md:text-4xl mb-6 uppercase font-medium">{current.aboutTitle}</h2>
-        <p className="max-w-3xl text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">{current.aboutText}</p>
+        <p className="max-w-3xl mx-auto text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          {current.aboutText}
+        </p>
       </section>
 
       <section className="py-16 px-4 sm:px-6 md:px-12 border-t border-neutral-300 dark:border-neutral-700 grid grid-cols-1 md:grid-cols-2 gap-8">
