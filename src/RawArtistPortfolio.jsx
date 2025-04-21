@@ -35,7 +35,7 @@ export default function RawArtistPortfolio() {
   const current = content[lang];
 
   return (
-    <main className={\`\${darkMode ? "bg-black text-white" : "bg-[#f9f9f9] text-black"} min-h-screen font-sans transition-colors duration-300\`}>
+    <main className={`${darkMode ? "bg-black text-white" : "bg-[#f9f9f9] text-black"} min-h-screen font-sans transition-colors duration-300`}>
       <div className="flex justify-between items-center px-6 py-4 text-sm">
         <div className="flex gap-2">
           <button onClick={() => setLang("en")} className={lang === "en" ? "font-bold" : "opacity-60"}>EN</button>
