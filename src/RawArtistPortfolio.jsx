@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { FaWhatsapp, FaTelegramPlane, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import "../styles/index.css";
 
 export default function RawArtistPortfolio() {
   const [darkMode, setDarkMode] = useState(false);
@@ -43,56 +44,44 @@ export default function RawArtistPortfolio() {
   }, [darkMode]);
 
   return (
-    <main className={\`\${darkMode ? "bg-black text-white" : "bg-[#f9f9f9] text-black"} min-h-screen font-sans transition-colors duration-300\`}>
-      <div className="flex justify-between items-center px-4 sm:px-6 py-4 text-sm">
+    <main className={\`\${darkMode ? "bg-black text-white" : "bg-[#f7f7f7] text-black"} min-h-screen font-sans transition-colors duration-300\`}>
+      <header className="flex justify-between items-center px-6 py-4 text-sm">
         <div className="flex gap-2">
           <button onClick={() => setLang("en")} className={lang === "en" ? "font-bold" : "opacity-60"}>EN</button>
           <button onClick={() => setLang("de")} className={lang === "de" ? "font-bold" : "opacity-60"}>DE</button>
         </div>
-        <div>
-          <button onClick={() => setDarkMode(!darkMode)}>{darkMode ? "☀️" : "🌙"}</button>
-        </div>
-      </div>
+        <button onClick={() => setDarkMode(!darkMode)}>{darkMode ? "☀️" : "🌙"}</button>
+      </header>
 
-      <section className="flex flex-col items-center justify-center text-center py-16 px-4">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight mb-4 uppercase">{current.name}</h1>
-        <p className="text-base sm:text-lg md:text-xl max-w-xl text-neutral-500">{current.role}</p>
+      <section className="flex flex-col items-center justify-center text-center py-12 px-4">
+        <h1 className="text-3xl sm:text-5xl font-light tracking-tight mb-2 uppercase">{current.name}</h1>
+        <p className="text-base sm:text-lg text-neutral-500 max-w-md">{current.role}</p>
       </section>
 
-      <section id="about" className="py-16 px-4 sm:px-6 md:px-12 border-t border-neutral-300 dark:border-neutral-700 text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl mb-6 uppercase font-medium">{current.aboutTitle}</h2>
-        <p className="max-w-3xl mx-auto text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+      <section className="py-12 px-4 text-center">
+        <h2 className="text-2xl sm:text-3xl mb-4 uppercase font-medium">{current.aboutTitle}</h2>
+        <p className="max-w-2xl mx-auto text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
           {current.aboutText}
         </p>
       </section>
 
-      <section className="py-16 px-4 sm:px-6 md:px-12 border-t border-neutral-300 dark:border-neutral-700 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <a href="/photo-gallery" className="group block overflow-hidden rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105">
-          <div className="relative">
-            <img src="https://placehold.co/1000x600?text=Photo+Preview" alt="Photo preview" className="w-full object-cover" />
-            <div className="absolute bottom-4 left-4 text-white bg-black bg-opacity-60 px-3 py-1 text-xl font-semibold rounded">
-              {current.photoTitle}
-            </div>
-          </div>
+      <section className="py-12 px-4 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <a href="/photo-gallery" className="group block overflow-hidden rounded-xl shadow-md bg-white hover:shadow-xl transition duration-300">
+          <img src="https://placehold.co/600x400?text=Photo" alt="Photo preview" className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-300" />
         </a>
-        <a href="/video-gallery" className="group block overflow-hidden rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105">
-          <div className="relative">
-            <img src="https://placehold.co/1000x600?text=Video+Preview" alt="Video preview" className="w-full object-cover" />
-            <div className="absolute bottom-4 left-4 text-white bg-black bg-opacity-60 px-3 py-1 text-xl font-semibold rounded">
-              {current.videoTitle}
-            </div>
-          </div>
+        <a href="/video-gallery" className="group block overflow-hidden rounded-xl shadow-md bg-white hover:shadow-xl transition duration-300">
+          <img src="https://placehold.co/600x400?text=Video" alt="Video preview" className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-300" />
         </a>
       </section>
 
-      <section id="contact" className="py-16 px-4 sm:px-6 md:px-12 border-t border-neutral-300 dark:border-neutral-700 text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl mb-6 uppercase font-medium">{current.contactTitle}</h2>
+      <section className="py-12 px-4 text-center">
+        <h2 className="text-2xl sm:text-3xl mb-4 uppercase font-medium">{current.contactTitle}</h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-lg mb-6">{current.contactText}</p>
-        <div className="flex justify-center gap-6 text-3xl">
-          <a href="https://wa.me/491234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><FaWhatsapp /></a>
-          <a href="https://t.me/kuskov_art" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><FaTelegramPlane /></a>
-          <a href="mailto:kuskov.alexander@email.com" aria-label="Email"><MdEmail /></a>
-          <a href="https://instagram.com/kuskov.art" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
+        <div className="flex justify-center gap-8 text-4xl">
+          <a href="https://wa.me/491234567890" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform duration-200"><FaWhatsapp /></a>
+          <a href="https://t.me/kuskov_art" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform duration-200"><FaTelegramPlane /></a>
+          <a href="mailto:kuskov.alexander@email.com" className="hover:scale-110 transition-transform duration-200"><MdEmail /></a>
+          <a href="https://instagram.com/kuskov.art" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform duration-200"><FaInstagram /></a>
         </div>
       </section>
     </main>
