@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaWhatsapp, FaTelegramPlane, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
@@ -34,27 +34,31 @@ export default function RawArtistPortfolio() {
 
   const current = content[lang];
 
+  useEffect(() => {
+    document.documentElement.className = darkMode ? 'dark' : '';
+  }, [darkMode]);
+
   return (
-    <main className={`${darkMode ? "bg-black text-white" : "bg-[#f9f9f9] text-black"} min-h-screen font-sans transition-colors duration-300`}>
-      <div className="flex justify-between items-center px-6 py-4 text-sm">
+    <main className="min-h-screen transition-colors duration-300 bg-[#f9f9f9] text-black dark:bg-black dark:text-white font-sans">
+      <div className="flex justify-between items-center px-4 sm:px-6 py-4 text-sm">
         <div className="flex gap-2">
-          <button onClick={() => setLang("en")} className={lang === "en" ? "font-bold" : "opacity-60"}>EN</button>
-          <button onClick={() => setLang("de")} className={lang === "de" ? "font-bold" : "opacity-60"}>DE</button>
+          <button onClick={() => setLang('en')} className={lang === 'en' ? 'font-bold' : 'opacity-60'}>EN</button>
+          <button onClick={() => setLang('de')} className={lang === 'de' ? 'font-bold' : 'opacity-60'}>DE</button>
         </div>
-        <button onClick={() => setDarkMode(!darkMode)}>{darkMode ? "☀️" : "🌙"}</button>
+        <button onClick={() => setDarkMode(!darkMode)}>{darkMode ? '☀️' : '🌙'}</button>
       </div>
 
       <section className="flex flex-col items-center justify-center text-center py-16 px-4">
-        <h1 className="text-5xl md:text-7xl font-light tracking-tight mb-4 uppercase">{current.name}</h1>
-        <p className="text-lg md:text-xl max-w-xl text-neutral-500">{current.role}</p>
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-tight mb-4 uppercase">{current.name}</h1>
+        <p className="text-base sm:text-lg md:text-xl max-w-xl text-neutral-500">{current.role}</p>
       </section>
 
-      <section id="about" className="py-16 px-6 md:px-24 border-t border-neutral-300">
-        <h2 className="text-3xl md:text-4xl mb-6 uppercase font-medium">{current.aboutTitle}</h2>
-        <p className="max-w-3xl text-lg text-neutral-700 leading-relaxed">{current.aboutText}</p>
+      <section id="about" className="py-16 px-4 sm:px-6 md:px-12 border-t border-neutral-300 dark:border-neutral-700">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl mb-6 uppercase font-medium">{current.aboutTitle}</h2>
+        <p className="max-w-3xl text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">{current.aboutText}</p>
       </section>
 
-      <section className="py-16 px-6 md:px-24 border-t border-neutral-300 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="py-16 px-4 sm:px-6 md:px-12 border-t border-neutral-300 dark:border-neutral-700 grid grid-cols-1 md:grid-cols-2 gap-8">
         <a href="/photo-gallery" className="group block overflow-hidden rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105">
           <div className="relative">
             <img src="https://placehold.co/1000x600?text=Photo+Preview" alt="Photo preview" className="w-full object-cover" />
@@ -73,9 +77,9 @@ export default function RawArtistPortfolio() {
         </a>
       </section>
 
-      <section id="contact" className="py-16 px-6 md:px-24 border-t border-neutral-300 text-center">
-        <h2 className="text-3xl md:text-4xl mb-6 uppercase font-medium">{current.contactTitle}</h2>
-        <p className="text-neutral-700 text-lg mb-6">{current.contactText}</p>
+      <section id="contact" className="py-16 px-4 sm:px-6 md:px-12 border-t border-neutral-300 dark:border-neutral-700 text-center">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl mb-6 uppercase font-medium">{current.contactTitle}</h2>
+        <p className="text-neutral-700 dark:text-neutral-300 text-lg mb-6">{current.contactText}</p>
         <div className="flex justify-center gap-6 text-3xl">
           <a href="https://wa.me/491234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><FaWhatsapp /></a>
           <a href="https://t.me/kuskov_art" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><FaTelegramPlane /></a>
